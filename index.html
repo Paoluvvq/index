@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="styles.css">
+   
+</head>
+<body>
+    <div class="form">
+        <h1 class="form-title">TRANSCRIPTION TEST</h1>
+        <p class="name-prompt">Enter your full name:</p>
+        <div class="form-group">
+            <input type="text" id="fullName">
+        </div>
+        <img src="https://github.com/Paoluvvq/index/raw/main/TRANSCRIPTION.png" alt="Transcription Image">
+        
+        <div class="tabs">
+            <div class="tab active">File Information</div>
+            <div class="tab" style="color: blue;">Stakeholders</div>
+            <div class="tab" style="color: blue;">Assets</div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="serialNo">Serial No.</label>
+                <input type="text" id="serialNo" >
+            </div>
+            <div class="form-group">
+                <label for="fileNumber">File Number</label>
+                <input type="text" id="fileNumber" >
+            </div>
+            <div class="form-group">
+                <label for="businessID">Business ID</label>
+                <input type="text" id="businessID" >
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="accountID">Account ID</label>
+                <input type="text" id="accountID" >
+            </div>
+            <div class="form-group">
+                <label for="analysisYear">Analysis Year</label>
+                <input type="text" id="analysisYear" >
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="branchLocation1">Branch Location #1</label>
+                <input type="text" id="branchLocation1" >
+            </div>
+            <div class="form-group">
+                <label for="branchLocation2">Branch Location #2</label>
+                <input type="text" id="branchLocation2">
+            </div>
+            <div class="form-group">
+                <label for="branchLocation3">Branch Location #3</label>
+                <input type="text" id="branchLocation3">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="branchLocation4">Branch Location #4</label>
+                <input type="text" id="branchLocation4" >
+            </div>
+            <div class="form-group">
+                <label for="branchLocation5">Branch Location #5</label>
+                <input type="text" id="branchLocation5">
+            </div>
+            <div class="form-group">
+                <label for="branchLocation6">Branch Location #6</label>
+                <input type="text" id="branchLocation6">
+            </div>
+        </div>
+        <div class="form-footer">
+            <button type="button" onclick="handleSubmit()">SUBMIT</button>
+        </div>
+    </div>
+
+    <div id="success-message" class="success-message">
+        YOUR TEST HAS BEEN SUCCESSFULLY SUBMITTED.
+        <button class="results-button" onclick="showPasswordSection()">VIEW RESULTS</button>
+    </div>
+
+    <div id="password-section" class="password-section" style="display:none;">
+        <label for="password">ENTER PASSWORD TO VIEW RESULTS:</label>
+        <input type="password" id="password">
+        <button class="submit-password" onclick="checkPassword()">SUBMIT</button>
+    </div>
+
+    <div id="results-container" class="results-container" style="display:none;">
+        <div id="results-message" class="results-message"></div>
+        <div id="results-errors" class="results-errors"></div>
+    </div>
+
+    <script>
+        function handleSubmit() {
+            document.querySelector('.form').style.display = 'none';
+            document.getElementById('success-message').style.display = 'flex';
+        }
+
+        function showPasswordSection() {
+            document.getElementById('password-section').style.display = 'block';
+        }
+
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            if (password === 'S1NERG1A.2024') {
+                showResults();
+            } else {
+                alert('Incorrect password');
+            }
+        }
+
+        function showResults() {
+            document.getElementById('password-section').style.display = 'none';
+            const fullName = document.getElementById('fullName').value;
+            const serialNo = document.getElementById('serialNo').value;
+            const fileNumber = document.getElementById('fileNumber').value;
+            const businessID = document.getElementById('businessID').value;
+            const analysisYear = document.getElementById('analysisYear').value;
+            const accountID = document.getElementById('accountID').value;
+            const branchLocation1 = document.getElementById('branchLocation1').value;
+            const branchLocation2 = document.getElementById('branchLocation2').value;
+            const branchLocation3 = document.getElementById('branchLocation3').value;
+            const branchLocation4 = document.getElementById('branchLocation4').value;
+            const branchLocation5 = document.getElementById('branchLocation5').value;
+            const branchLocation6 = document.getElementById('branchLocation6').value;
+
+            let errors = [];
+            if (serialNo !== 'EaorejzoB30Kcqcw') {
+                errors.push('Incorrect Serial No.');
+            }
+            if (fileNumber !== 'FN1994-5217440583vhylue') {
+                errors.push('Incorrect File Number');
+            }
+            if (businessID !== 'BIZ/1994/XSEI/415545') {
+                errors.push('Incorrect Business ID');
+            }
+            if (analysisYear !== '1994') {
+                errors.push('Incorrect Analysis Year');
+            }
+            if (accountID !== 'ACT/1994/YXCP/850511') {
+                errors.push('Incorrect Account ID');
+            }
+            if (branchLocation1 !== 'spink, south dakota, 57025') {
+                errors.push('Incorrect Branch Location #1');
+            }
+            if (branchLocation2 !== 'TAMA, I0WA, 52339') {
+                errors.push('Incorrect Branch Location #2');
+            }
+            if (branchLocation3 !== 'phoenix, Arizona, 85037') {
+                errors.push('Incorrect Branch Location #3');
+            }
+            if (branchLocation4 !== 'demster, new York, 13126') {
+                errors.push('Incorrect Branch Location #4');
+            }
+            if (branchLocation5 !== '') {
+                errors.push('Branch Location #5 should be blank');
+            }
+            if (branchLocation6 !== '') {
+                errors.push('Branch Location #6 should be blank');
+            }
+
+            const resultsMessage = document.getElementById('results-message');
+            const resultsErrors = document.getElementById('results-errors');
+
+            let errorCountMessage = `${fullName}, HAD ${errors.length} ERRORS`;
+            resultsErrors.innerHTML = `<p>${errorCountMessage}</p>`;
+
+            errors.forEach(error => {
+                const errorItem = document.createElement('div');
+                errorItem.textContent = error;
+                resultsErrors.appendChild(errorItem);
+            });
+
+            if (errors.length > 4) {
+                resultsMessage.textContent = 'DID NOT PASS THE TEST. YOU HAVE MORE THAN 4 ERRORS.';
+            } else if (errors.length >= 3 && errors.length <= 4) {
+                resultsMessage.textContent = 'STILL HAVE A CHANCE';
+            } else {
+                resultsMessage.textContent = 'PASSED THE TEST SUCCESSFULLY.';
+            }
+
+            document.getElementById('results-container').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
